@@ -23,4 +23,9 @@ $app->group('/api', function () use ($app) {
     $app->get('/validation','AccessLogin');
     $app->get('/setmateria','setmateria');
     $app->get('/getmaterias','getmaterias');
+    $app->get('/carreras','gettodaslascarreras');
+    $app->get('/carrerra','getcarrera');
+    $app->post('/carrera','setcarrera');;
+    $app->put('/carreraupdate','updatecarrera');
+    $app->delete('/carreradelete','deletecarrera');
 });
