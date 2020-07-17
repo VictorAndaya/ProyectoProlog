@@ -21,5 +21,6 @@ $app->group('/api', function () use ($app) {
    
     //Acceso de Usuarios
     $app->get('/validation','AccessLogin');
-    
+    $app->get('/setmateria','setmateria');
+    $app->get('/getmaterias','getmaterias');
 });

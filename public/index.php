@@ -40,5 +40,6 @@ require_once __DIR__ . '/../includes/DbConnect.php';
 ////////////////////////////////////////////////
 
 include 'Controller/validation.php';
+include 'Controller/materias.php';
 $app->run();
 
