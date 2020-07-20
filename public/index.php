@@ -44,5 +44,6 @@ include 'Controller/materias.php';
 include 'Controller/carreras.php';
 include 'Controller/preguntas.php';
 include 'Controller/usuarios.php';
+include 'Controller/pesoCarrera.php';
 $app->run();
 
