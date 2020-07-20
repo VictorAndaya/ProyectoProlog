@@ -25,7 +25,12 @@ $app->group('/api', function () use ($app) {
     $app->get('/getmaterias','getmaterias');
     $app->get('/carreras','gettodaslascarreras');
     $app->get('/carrerra','getcarrera');
-    $app->post('/carrera','setcarrera');;
+    $app->post('/carrera','setcarrera');
     $app->put('/carreraupdate','updatecarrera');
     $app->delete('/carreradelete','deletecarrera');
+
+    $app->get('/getpreguntas','getpreguntas');
+    $app->get('/setpreguntas','setpreguntas');
+    $app->put('/updatepregunta','updatepregunta');
+    $app->delete('/deletepregunta','deletepregunta');
 });
