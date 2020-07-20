@@ -28,4 +28,6 @@ $app->group('/api', function () use ($app) {
     $app->post('/carrera','setcarrera');;
     $app->put('/carreraupdate','updatecarrera');
     $app->delete('/carreradelete','deletecarrera');
+
+    $app->post('/usuarios','setUsuario');
 });
