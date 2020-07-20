@@ -43,5 +43,6 @@ include 'Controller/validation.php';
 include 'Controller/materias.php';
 include 'Controller/carreras.php';
 include 'Controller/preguntas.php';
+include 'Controller/usuarios.php';
 $app->run();
 

@@ -33,4 +33,5 @@ $app->group('/api', function () use ($app) {
     $app->get('/setpreguntas','setpreguntas');
     $app->put('/updatepregunta','updatepregunta');
     $app->delete('/deletepregunta','deletepregunta');
+    $app->post('/usuarios','setUsuario');
 });
