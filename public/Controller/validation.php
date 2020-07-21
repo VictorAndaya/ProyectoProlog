@@ -32,11 +32,11 @@ class Login{
             
             if($count)
             {
-                $response->mensaje="Acceso correcto";
+                $response->mensaje = 1;
             }
             else
             {
-                $response->mensaje="Usuario/Contrasena incorrecta";
+                $response->mensaje = 0;
             }
               
 
@@ -48,24 +48,7 @@ class Login{
     }
 
 
-    public function verificaSubmoduleService($query){
-        $ch = curl_init();        
-        
-        $optArray = array(
-            CURLOPT_URL =>$query->URL,
-            CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_CUSTOMREQUEST=>$query->VERBO,
-            CURLOPT_POSTFIELDS=>$query->DATA,
-            CURLOPT_HTTPHEADER=>array('Content-type: text/plain'),
-        );        
-        curl_setopt_array($ch, $optArray);    
-        $response=new stdClass();
-        $response->body = curl_exec($ch);        
-        $response->responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        curl_close($ch);  
-        return $response;     
-    }
+    
 
     
 
