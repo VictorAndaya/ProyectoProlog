@@ -19,7 +19,6 @@ $app->get('/[{name}]', function (Request $request, Response $response, array $ar
 // API group
 $app->group('/api', function () use ($app) {
    
-    //Acceso de Usuarios
     $app->get('/validation','AccessLogin');
     $app->get('/setmateria','setmateria');
     $app->get('/getmaterias','getmaterias');
@@ -44,4 +43,6 @@ $app->group('/api', function () use ($app) {
     $app->get('/getpesomateria','getpesomateria');
     $app->put('/updatepesomateria','updatepesomateria');
     $app->delete('/deletepesomateria','deletepesomateria');
+
+    $app->get('/usuario','getusuario');
 });

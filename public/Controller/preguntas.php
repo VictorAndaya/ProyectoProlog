@@ -23,6 +23,7 @@ class Pregunta{
         $database=new DbConnect();
         $this->conexion=$database->connect();
     }
+
     function getpreguntas(){
         $preguntas;
         $response;
@@ -36,6 +37,7 @@ class Pregunta{
         }
         return json_encode($response);
     }
+    
     function setpreguntas($request){
         $preguntas;
         $response;
