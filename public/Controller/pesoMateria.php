@@ -41,12 +41,14 @@ class PesoMateria{
         return json_encode($response);
     }
 
-    function getPesoMateria(){
+    function getPesoMateria($request){
         $pesos;
         $response;
-        $sql="SELECT * FROM CarreraMaterias;";    
+        $data=json_decode($request->getBody());
+        $sql="SELECT m.Nombre,Peso FROM CarreraMaterias cm JOIN Materias m ON cm.IdMateria = m.IdMateria WHERE IdCarrera=:IdCarrera;";    
         try{            
-            $statement=$this->conexion->prepare($sql);            
+            $statement=$this->conexion->prepare($sql); 
+            $statement->bindParam("IdCarrera",$data->IdCarrera);           
             $statement->execute();
             $response=$statement->fetchall(PDO::FETCH_OBJ);            
         }catch(Exception $e){
