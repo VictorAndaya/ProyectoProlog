@@ -45,7 +45,7 @@ class PesoMateria{
         $pesos;
         $response;
         $data=json_decode($request->getBody());
-        $sql="SELECT m.Nombre,Peso FROM CarreraMaterias cm JOIN Materias m ON cm.IdMateria = m.IdMateria WHERE IdCarrera=:IdCarrera;";    
+        $sql="SELECT m.Nombre,Peso FROM CarreraMaterias cm JOIN Materias m ON cm.IdMateria = m.IdMateria WHERE IdCarrera=:IdCarrera ORDER BY m.Nombre ASC;";    
         try{            
             $statement=$this->conexion->prepare($sql); 
             $statement->bindParam("IdCarrera",$data->IdCarrera);           
