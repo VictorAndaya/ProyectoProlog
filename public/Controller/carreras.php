@@ -49,7 +49,7 @@ class Carrera{
         $sql="SELECT * FROM Carreras WHERE IdCarrera=:IdCarrera";    
         try{            
             $statement=$this->conexion->prepare($sql);
-            $statement->bindParam("Id",$carrera->Id);
+            $statement->bindParam("IdCarrera",$carrera->Id);
             $statement->execute();
             $response=$statement->fetchall(PDO::FETCH_OBJ);            
         }catch(Exception $e){

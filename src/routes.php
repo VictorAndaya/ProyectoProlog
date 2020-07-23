@@ -45,4 +45,6 @@ $app->group('/api', function () use ($app) {
     $app->delete('/deletepesomateria','deletepesomateria');
 
     $app->get('/usuario','getusuario');
+
+    $app->get('/getCarreraMateria','getCarreraMateria');
 });
