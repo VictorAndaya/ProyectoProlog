@@ -1,7 +1,13 @@
 <?
 function setUsuario($request){
     $usuarios =new usuarios();
-return $usuarios->setUsuario($request);
+    return $usuarios->setUsuario($request);
+}
+
+function getUsuario($request){
+    $usuarios = new usuarios();
+    return $usuarios->getUsuario($request);
+
 }
 class usuarios{
     private $conexion;
@@ -27,5 +33,23 @@ class usuarios{
             $response=$e;
         }
         return json_encode($response);
+    }
+
+
+    function getUsuario($request){
+        
+        $response;
+        $data = json_decode($request->getBody());
+        $sql = "SELECT * FROM Usuarios WHERE Usuario = :user";    
+        try{            
+            $statement=$this->conexion->prepare($sql);
+            $statement->bindParam("user",$data->usuario);
+            $statement->execute();
+            $response=$statement->fetchall(PDO::FETCH_OBJ);            
+        }catch(Exception $e){
+            $response=$e;
+        }
+        return json_encode($response);
+
     }
 }
