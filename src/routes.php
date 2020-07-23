@@ -49,4 +49,5 @@ $app->group('/api', function () use ($app) {
     $app->get('/usuario','getusuario');
 
     $app->get('/getCarreraMateria','getCarreraMateria');
+    $app->post('/setCarreraMaterias','setCarreraMaterias');
 });

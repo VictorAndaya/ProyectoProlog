@@ -3,6 +3,10 @@ function getCarreraMateria($request){
     $carreras=new consulta();
 return $carreras->getCarreraMateria($request);
 }
+function setCarreraMaterias($request){
+    $carreras= new consulta();
+    return $carreras->setCarreraMaterias($request);
+}
 class consulta{
     private $conexion;
     
@@ -25,12 +29,32 @@ class consulta{
             
             if($count)
             {
+                //Si ya existe un registro no debe de hacer nada
                 $response->mensaje = 1;
             }
             else
             {
+                //De lo contario inserta
                 $response->mensaje = 0;
             }         
+        }catch(Exception $e){
+            $response=$e;
+        }
+        return json_encode($response);
+    }
+    function setCarreraMaterias($request){
+        $carreras;
+        $response;
+        $carrera=json_decode($request->getBody());
+        $sql="INSERT INTO CarreraMaterias (IdCarreraMateria, IdCarrera, IdMateria, Peso) VALUES(:IdCarreraMateria,:IdCarrera,:IdMateria,:Peso)"; 
+        try{            
+            $statement=$this->conexion->prepare($sql);
+            $statement->bindParam("IdCarreraMateria",$carrera->IdCarreraMateria);
+            $statement->bindParam("IdCarrera",$carrera->IdCarrera);
+            $statement->bindParam("IdMateria",$carrera->IdMateria);
+            $statement->bindParam("Peso",$carrera->Peso);
+            $statement->execute();
+            $response->mensaje="Se relaciono correctamente";
         }catch(Exception $e){
             $response=$e;
         }
