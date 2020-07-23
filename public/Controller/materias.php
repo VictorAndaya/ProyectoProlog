@@ -28,10 +28,10 @@ class Materia{
         $materias;
         $response;
         $data=json_decode($request->getBody());
-        $sql="INSERT INTO Materias(Nombre) VALUES(:Nombre)"; 
+        $sql="INSERT INTO Materias (Nombre) VALUES(:Nombre)"; 
         try{            
             $statement=$this->conexion->prepare($sql);
-            $statement->bindParam("Nombre",$data->nombre);
+            $statement->bindParam("Nombre",$data->Nombre);
             $statement->execute();
             $response->mensaje="La materia se agrego correctamente";
         }catch(Exception $e){
