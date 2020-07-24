@@ -7,6 +7,10 @@ function setCarreraMaterias($request){
     $carreras= new consulta();
     return $carreras->setCarreraMaterias($request);
 }
+function getMotor($request){
+    $carreras= new consulta();
+    return $carreras->getMotor($request);
+}
 class consulta{
     private $conexion;
     
@@ -42,6 +46,23 @@ class consulta{
         }
         return json_encode($response);
     }
+    //
+    function getMotor($request){
+        $carreras;
+        $response;
+        $carrera=json_decode($request->getBody());
+        $sql="SELECT * FROM CarreraMaterias WHERE IdMateria=:IdMateria";    
+        try{            
+            $statement=$this->conexion->prepare($sql);
+            $statement->bindParam("IdMateria",$carrera->IdMateria);
+            $statement->execute();
+            $response=$statement->fetchall(PDO::FETCH_OBJ);  
+        }catch(Exception $e){
+            $response=$e;
+        }
+        return json_encode($response);
+    }
+    //
     function setCarreraMaterias($request){
         $carreras;
         $response;
