@@ -1,5 +1,5 @@
 <?
-function getPreguntas($request){
+function getPreguntas(){
     $preguntas=new Pregunta();
     return $preguntas->getpreguntas($request);
 }
@@ -45,8 +45,8 @@ class Pregunta{
         $sql="INSERT INTO Preguntas(IdMateria,Pregunta) VALUES(:idMateria,:pregunta)"; 
         try{            
             $statement=$this->conexion->prepare($sql);
-            $statement->bindParam("idMateria",$data->idMateria);
-            $statement->bindParam("pregunta",$data->pregunta);
+            $statement->bindParam("idMateria",$data->IdMateria);
+            $statement->bindParam("pregunta",$data->Pregunta);
             $statement->execute();
             $response->mensaje="La pregunta se agrego correctamente";
         }catch(Exception $e){
