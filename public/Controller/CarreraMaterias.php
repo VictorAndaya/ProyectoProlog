@@ -51,7 +51,7 @@ class consulta{
         $carreras;
         $response;
         $carrera=json_decode($request->getBody());
-        $sql="SELECT * FROM CarreraMaterias WHERE IdMateria=:IdMateria";    
+        $sql="SELECT Peso FROM CarreraMaterias WHERE IdMateria=:IdMateria";    
         try{            
             $statement=$this->conexion->prepare($sql);
             $statement->bindParam("IdMateria",$carrera->IdMateria);
