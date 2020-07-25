@@ -52,4 +52,5 @@ $app->group('/api', function () use ($app) {
     $app->post('/setCarreraMaterias','setCarreraMaterias');
 
     $app->get('/getMotor','getMotor');
+    $app->get('/getTotal','getTotalCarreraMaterias');
 });

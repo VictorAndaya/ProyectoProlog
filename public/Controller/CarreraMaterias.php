@@ -11,6 +11,10 @@ function getMotor($request){
     $carreras= new consulta();
     return $carreras->getMotor($request);
 }
+function getTotalCarreraMaterias($request){
+    $carreras= new consulta();
+    return $carreras->getTotalCarreraMaterias($request);
+}
 class consulta{
     private $conexion;
     
@@ -76,6 +80,22 @@ class consulta{
             $statement->bindParam("Peso",$carrera->Peso);
             $statement->execute();
             $response->mensaje="Se relaciono correctamente";
+        }catch(Exception $e){
+            $response=$e;
+        }
+        return json_encode($response);
+    }
+    function getTotalCarreraMaterias($request){
+        $carreras;
+        $response;
+        $carrera=json_decode($request->getBody());
+        //$sql="SELECT IdCarrera,SUM(Peso) as PesoTotal FROM CarreraMaterias;"; 
+        $sql="SELECT c.Nombre,SUM(Peso) as PesoTotal FROM CarreraMaterias cm JOIN Carreras c ON cm.IdCarrera = c.IdCarrera;"; 
+        try{            
+            $statement=$this->conexion->prepare($sql);
+            //SSS$statement->bindParam("IdCarrera",$carrera->IdCarrera);
+            $statement->execute();
+            $response=$statement->fetchall(PDO::FETCH_OBJ);
         }catch(Exception $e){
             $response=$e;
         }

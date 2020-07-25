@@ -47,6 +47,5 @@ include 'Controller/usuarios.php';
 include 'Controller/pesoCarrera.php';
 include 'Controller/pesoMateria.php';
 include 'Controller/CarreraMaterias.php';
-include 'Controller/motor.php';
 $app->run();
 
