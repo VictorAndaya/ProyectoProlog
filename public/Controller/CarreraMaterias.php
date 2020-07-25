@@ -90,10 +90,10 @@ class consulta{
         $response;
         $carrera=json_decode($request->getBody());
         //$sql="SELECT IdCarrera,SUM(Peso) as PesoTotal FROM CarreraMaterias;"; 
-        $sql="SELECT c.Nombre,SUM(Peso) as PesoTotal FROM CarreraMaterias cm JOIN Carreras c ON cm.IdCarrera = c.IdCarrera;"; 
+        $sql="SELECT c.Nombre,SUM(Peso) as PesoTotal FROM CarreraMaterias cm JOIN Carreras c ON cm.IdCarrera = c.IdCarrera GROUP BY cm.IdCarrera;"; 
         try{            
             $statement=$this->conexion->prepare($sql);
-            //SSS$statement->bindParam("IdCarrera",$carrera->IdCarrera);
+            //$statement->bindParam("IdCarrera",$carrera->IdCarrera);
             $statement->execute();
             $response=$statement->fetchall(PDO::FETCH_OBJ);
         }catch(Exception $e){
