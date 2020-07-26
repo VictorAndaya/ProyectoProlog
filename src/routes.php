@@ -53,4 +53,6 @@ $app->group('/api', function () use ($app) {
 
     $app->get('/getMotor','getMotor');
     $app->get('/getTotal','getTotalCarreraMaterias');
+    $app->get('/getFinal','getFinal');
+    $app->get('/getDis','getDis');
 });

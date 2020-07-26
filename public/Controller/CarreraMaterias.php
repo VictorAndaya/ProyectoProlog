@@ -15,6 +15,14 @@ function getTotalCarreraMaterias($request){
     $carreras= new consulta();
     return $carreras->getTotalCarreraMaterias($request);
 }
+function getFinal($request){
+    $carreras= new consulta();
+    return $carreras->getFinal($request);
+}
+function getDis($request){
+    $carreras= new consulta();
+    return $carreras->getDis($request);
+}
 class consulta{
     private $conexion;
     
@@ -66,6 +74,35 @@ class consulta{
         }
         return json_encode($response);
     }
+    function getFinal($request){
+        $carreras;
+        $response;
+        $carrera=json_decode($request->getBody());
+        $sql="SELECT IdMateria,Peso FROM CarreraMaterias WHERE IdMateria=:IdMateria AND IdCarrera=:IdCarrera";    
+        try{            
+            $statement=$this->conexion->prepare($sql);
+            $statement->bindParam("IdMateria",$carrera->IdMateria);
+            $statement->bindParam("IdCarrera",$carrera->IdCarrera);
+            $statement->execute();
+            $response=$statement->fetchall(PDO::FETCH_OBJ);  
+        }catch(Exception $e){
+            $response=$e;
+        }
+        return json_encode($response);
+    }
+    function getDis(){
+        $carreras;
+        $response;
+        $sql="SELECT DISTINCT IdCarrera FROM CarreraMaterias";    
+        try{            
+            $statement=$this->conexion->prepare($sql);
+            $statement->execute();
+            $response=$statement->fetchall(PDO::FETCH_OBJ);  
+        }catch(Exception $e){
+            $response=$e;
+        }
+        return json_encode($response);
+    }
     //
     function setCarreraMaterias($request){
         $carreras;
@@ -90,10 +127,15 @@ class consulta{
         $response;
         $carrera=json_decode($request->getBody());
         //$sql="SELECT IdCarrera,SUM(Peso) as PesoTotal FROM CarreraMaterias;"; 
-        $sql="SELECT c.Nombre,SUM(Peso) as PesoTotal FROM CarreraMaterias cm JOIN Carreras c ON cm.IdCarrera = c.IdCarrera GROUP BY cm.IdCarrera;"; 
+        $sql="SELECT c.Nombre,SUM(Peso) as PesoTotal 
+        FROM CarreraMaterias cm 
+        JOIN Carreras c 
+        ON cm.IdCarrera = c.IdCarrera 
+        WHERE cm.IdCarrera=:IdCarrera 
+        GROUP BY cm.IdCarrera;"; 
         try{            
             $statement=$this->conexion->prepare($sql);
-            //$statement->bindParam("IdCarrera",$carrera->IdCarrera);
+            $statement->bindParam("IdCarrera",$carrera->IdCarrera);
             $statement->execute();
             $response=$statement->fetchall(PDO::FETCH_OBJ);
         }catch(Exception $e){
